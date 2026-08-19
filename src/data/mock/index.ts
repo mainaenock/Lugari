@@ -1,0 +1,642 @@
+import {
+  Project, Opportunity, School, Business, MarketplaceListing,
+  Event, Article, CaseReport, PublicProposal, Commitment,
+  Alert, Campaign, TalentProfile, AgriculturePrice, Organization,
+  Advertisement, AuditEvent
+} from '@/types';
+
+export const MOCK_PROJECTS: Project[] = [
+  {
+    id: 'proj-1',
+    projectId: 'LUG-CDF-2025-01',
+    title: 'Mautuma Secondary School Science Laboratory Construction',
+    slug: 'mautuma-secondary-school-laboratory',
+    wardSlug: 'mautuma',
+    category: 'Education',
+    status: 'In Progress',
+    progressPercentage: 75,
+    budgetKsh: 4500000,
+    amountSpentKsh: 3375000,
+    financialYear: '2024/2025',
+    implementingBody: 'Lugari NG-CDF Committee',
+    fundingSource: 'NG-CDF',
+    startDate: '2024-09-10',
+    expectedCompletionDate: '2025-05-30',
+    summary: 'Construction of a modern multi-discipline science laboratory block equipped for Chemistry, Physics, and Biology.',
+    description: 'This project addresses the shortage of practical science facilities for CBC Senior School requirements in Mautuma Ward. The building includes modern gas piping, standard lab benches, water filtration sinks, and prep rooms.',
+    locationName: 'Mautuma Secondary School Campus, Mautuma Ward',
+    beforePhotoUrl: 'https://images.unsplash.com/photo-1541888946425-d0fbb186a5b7?auto=format&fit=crop&q=80&w=800',
+    currentPhotoUrl: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=800',
+    milestones: [
+      { id: 'm1', title: 'Site excavation and foundation laying', date: '2024-10-15', completed: true },
+      { id: 'm2', title: 'Wall elevation and lintel beam casting', date: '2024-12-05', completed: true },
+      { id: 'm3', title: 'Roof truss installation and iron sheet roofing', date: '2025-02-10', completed: true },
+      { id: 'm4', title: 'Plumbing, electrical wiring, and lab benches fitting', date: '2025-04-15', completed: false },
+      { id: 'm5', title: 'Final painting, lab equipment installation & handover', date: '2025-05-30', completed: false },
+    ],
+    updates: [
+      { id: 'u1', date: '2025-02-12', title: 'Roofing completed', content: 'Roof trusses and pre-painted GCI roofing sheets successfully installed ahead of rainy season.', author: 'NG-CDF Works Inspector' },
+      { id: 'u2', date: '2024-12-10', title: 'Superstructure inspection passed', content: 'Wall masonry inspected and approved by County Structural Engineer.', author: 'Sub-County Engineer' }
+    ],
+    documents: [
+      { name: 'Project Approval Letter.pdf', url: '#', size: '1.2 MB' },
+      { name: 'Tender Award Summary.pdf', url: '#', size: '850 KB' },
+    ],
+    sourceAttribution: 'Lugari NG-CDF Official Gazette & On-site Verification',
+    lastUpdated: '2025-02-12',
+    verificationStatus: 'verified',
+  },
+  {
+    id: 'proj-2',
+    projectId: 'LUG-CDF-2024-08',
+    title: 'Lumakanda Sub-County Hospital Maternity Wing Expansion',
+    slug: 'lumakanda-hospital-maternity-wing',
+    wardSlug: 'lumakanda',
+    category: 'Health',
+    status: 'Completed',
+    progressPercentage: 100,
+    budgetKsh: 12000000,
+    amountSpentKsh: 11850000,
+    financialYear: '2023/2024',
+    implementingBody: 'County Government of Kakamega & NG-CDF Co-Funding',
+    fundingSource: 'County Government',
+    startDate: '2023-11-01',
+    expectedCompletionDate: '2024-11-15',
+    summary: 'A 30-bed modern maternity ward with delivery rooms, newborn care unit, and ultrasound facility.',
+    description: 'Significantly lowers maternal and infant mortality rates in Lugari Sub-County. Fully equipped with modern incubators, ultrasound diagnostic equipment, and recovery rooms.',
+    locationName: 'Lumakanda Sub-County Referral Hospital',
+    currentPhotoUrl: 'https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&q=80&w=800',
+    milestones: [
+      { id: 'm1', title: 'Groundbreaking', date: '2023-11-01', completed: true },
+      { id: 'm2', title: 'Structure Construction', date: '2024-04-10', completed: true },
+      { id: 'm3', title: 'Medical Equipment Installation', date: '2024-09-30', completed: true },
+      { id: 'm4', title: 'Commissioning and Handover', date: '2024-11-20', completed: true },
+    ],
+    updates: [
+      { id: 'u1', date: '2024-11-20', title: 'Officially Commissioned', content: 'Facility opened to the public by health authorities and local leaders.', author: 'County Health Dept' }
+    ],
+    sourceAttribution: 'Kakamega County Ministry of Health',
+    lastUpdated: '2024-11-20',
+    verificationStatus: 'verified',
+  },
+  {
+    id: 'proj-3',
+    projectId: 'LUG-RDT-2025-03',
+    title: 'Lugari Railway Station - Mautuma Feeder Road Marram & Culverts',
+    slug: 'lugari-railway-mautuma-feeder-road',
+    wardSlug: 'lugari',
+    category: 'Infrastructure',
+    status: 'Delayed',
+    progressPercentage: 40,
+    budgetKsh: 6800000,
+    amountSpentKsh: 2700000,
+    financialYear: '2024/2025',
+    implementingBody: 'Kenya Rural Roads Authority (KeRRA)',
+    fundingSource: 'National Government',
+    startDate: '2024-08-01',
+    expectedCompletionDate: '2025-01-31',
+    summary: '8km road grading, heavy gravel compaction, and installation of 6 concrete pipe culverts.',
+    description: 'Critical feeder road for grain transport from farms to railway depot. Heavy rains caused delays in sub-base compaction and culvert curing.',
+    locationName: 'Lugari Station - Mautuma Road stretch',
+    currentPhotoUrl: 'https://images.unsplash.com/photo-1590486803833-1c5dc8ddd4c8?auto=format&fit=crop&q=80&w=800',
+    milestones: [
+      { id: 'm1', title: 'Bush clearing and heavy grading', date: '2024-08-20', completed: true },
+      { id: 'm2', title: 'Culvert drainage casting', date: '2024-10-10', completed: true },
+      { id: 'm3', title: 'Gravel spreading and roller compaction', date: '2024-12-15', completed: false },
+    ],
+    updates: [
+      { id: 'u1', date: '2025-01-10', title: 'Delay Notice Issued', content: 'Contractor requested 60-day extension due to abnormal seasonal rainfall interfering with compaction.', author: 'KeRRA Regional Engineer' }
+    ],
+    sourceAttribution: 'KeRRA Kakamega Regional Office Report',
+    lastUpdated: '2025-01-10',
+    verificationStatus: 'verified',
+  },
+  {
+    id: 'proj-4',
+    projectId: 'LUG-WTR-2025-02',
+    title: 'Chekalini Solar Powered Community Water Borehole',
+    slug: 'chekalini-solar-powered-borehole',
+    wardSlug: 'chekalini',
+    category: 'Water & Sanitation',
+    status: 'In Progress',
+    progressPercentage: 60,
+    budgetKsh: 3800000,
+    amountSpentKsh: 2280000,
+    financialYear: '2024/2025',
+    implementingBody: 'Department of Water & Environment',
+    fundingSource: 'County Government',
+    startDate: '2024-11-10',
+    expectedCompletionDate: '2025-04-15',
+    summary: 'Drilling 180m hydro-geological borehole, installation of 10kW solar panels, and 24,000L elevated storage tank.',
+    description: 'Will provide clean, safe drinking water to over 1,200 households and Chekalini Primary School.',
+    locationName: 'Chekalini Market Green Square',
+    currentPhotoUrl: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800',
+    milestones: [
+      { id: 'm1', title: 'Hydro-geological survey & drilling', date: '2024-11-25', completed: true },
+      { id: 'm2', title: 'Pump testing and yield quality report', date: '2024-12-18', completed: true },
+      { id: 'm3', title: 'Solar panel array erection & tank tower', date: '2025-02-20', completed: true },
+      { id: 'm4', title: 'Community distribution kiosks connection', date: '2025-04-15', completed: false },
+    ],
+    updates: [
+      { id: 'u1', date: '2025-02-05', title: 'Water Yield Confirmed', content: 'Test pumping yielded 12,000 litres per hour of high purity water.', author: 'Water Engineer' }
+    ],
+    sourceAttribution: 'County Water Department Inspection',
+    lastUpdated: '2025-02-05',
+    verificationStatus: 'verified',
+  }
+];
+
+export const MOCK_OPPORTUNITIES: Opportunity[] = [
+  {
+    id: 'opp-1',
+    title: 'Lugari Constituency Bursary Application Scheme FY 2024/2025',
+    slug: 'lugari-constituency-bursary-2025',
+    organizationName: 'Lugari NG-CDF Bursary Committee',
+    organizationVerified: true,
+    category: 'bursaries',
+    wardSlug: undefined,
+    location: 'All Wards in Lugari Sub-County',
+    educationLevel: 'Secondary & Tertiary Institutions',
+    salaryOrValue: 'Up to KSh 15,000 per student',
+    deadline: '2025-03-25',
+    closingSoon: true,
+    description: 'Financial support for needy, orphaned, and high-performing students enrolled in accredited Secondary Schools, TVETs, Colleges, and Universities across Lugari Constituency.',
+    eligibility: [
+      'Must be a registered resident of Lugari Constituency (verified by Ward Admin/Chief).',
+      'Enrolled in a recognized Secondary School or accredited Tertiary Institution.',
+      'Priority given to orphans, single-parent households, and extreme economic hardship cases.'
+    ],
+    requirements: [
+      'Duly filled Bursary Form (available on lugari.ke or Ward Offices)',
+      'Copy of Student ID / Birth Certificate',
+      'Copy of Parent / Guardian National ID',
+      'Latest School Calling Letter or Transcript / Fee Structure'
+    ],
+    applicationInstructions: 'Download the bursary form or apply online via lugari.ke/education. Submit physical verification copies to your respective Chief or Assistant Chief office before deadline.',
+    postedDate: '2025-02-01',
+    source: 'Lugari NG-CDF Official Announcement',
+  },
+  {
+    id: 'opp-2',
+    title: 'Mathematics & Chemistry High School Teacher',
+    slug: 'math-chemistry-teacher-lumakanda-high',
+    organizationName: 'Lumakanda Girls Secondary School Board of Management',
+    organizationVerified: true,
+    category: 'jobs',
+    wardSlug: 'lumakanda',
+    location: 'Lumakanda Ward',
+    educationLevel: 'Bachelor of Education (Science) / Diploma in Education',
+    salaryOrValue: 'KSh 28,000 - 35,000 / month (BOM Terms)',
+    deadline: '2025-03-10',
+    closingSoon: true,
+    description: 'Seeking an enthusiastic TSC-registered Teacher of Mathematics and Chemistry for Senior Classes.',
+    eligibility: [
+      'Must be TSC Registered.',
+      'Minimum Qualification: Diploma or Degree in Secondary Education.',
+      'At least 1 year teaching experience in KCSE syllabus.'
+    ],
+    requirements: [
+      'TSC Certificate Copy',
+      'Academic Transcripts and Certificates',
+      'National ID Copy',
+      'Recommendation letters from previous institution'
+    ],
+    applicationInstructions: 'Send CV and application letter addressed to The Principal / BOM Secretary, Lumakanda Girls Secondary School or upload directly on Lugari.ke portal.',
+    postedDate: '2025-02-14',
+    source: 'School BOM Advertisement',
+  },
+  {
+    id: 'opp-3',
+    title: 'County Youth Agriculture Innovation Grant 2025',
+    slug: 'county-youth-agri-innovation-grant-2025',
+    organizationName: 'Kakamega County Youth Empowerment Fund',
+    organizationVerified: true,
+    category: 'grants',
+    wardSlug: undefined,
+    location: 'Lugari Sub-County Wide',
+    educationLevel: 'Open to All Youth Groups (18-35 years)',
+    salaryOrValue: 'Grant Funding up to KSh 250,000',
+    deadline: '2025-04-15',
+    closingSoon: false,
+    description: 'Matching seed grant funding for registered youth groups engaging in high-value agriculture (poultry, avocado, dairy value addition, smart irrigation).',
+    eligibility: [
+      'Registered youth group or cooperative with Social Services.',
+      'At least 70% membership aged between 18 and 35 years.',
+      'Operational agricultural project within Lugari.'
+    ],
+    requirements: [
+      'Group Registration Certificate',
+      'Business Proposal / Project Idea Summary',
+      'Active Group Bank Account or M-Pesa Till details'
+    ],
+    applicationInstructions: 'Submit proposals online via lugari.ke/agriculture or at the Sub-County Youth Development Office in Lumakanda.',
+    postedDate: '2025-02-10',
+    source: 'Department of Youth & Sports',
+  }
+];
+
+export const MOCK_SCHOOLS: School[] = [
+  {
+    id: 'sch-1',
+    name: 'Lumakanda High School',
+    slug: 'lumakanda-high-school',
+    wardSlug: 'lumakanda',
+    level: 'Secondary',
+    type: 'Public',
+    gender: 'Boys',
+    principalName: 'Mr. J. Omwamba',
+    contactPhone: '+254 722 123 456',
+    contactEmail: 'lumakandahigh@gmail.com',
+    facilities: ['Science Complex', 'Computer Lab with 40 PCs', 'Standard Football Pitch', 'Boarding Facilities', 'Library'],
+    studentCount: 940,
+    teacherCount: 42,
+    academicPerformanceNote: 'Mean Grade 7.82 (B-) in KCSE 2024. Ranked top 3 secondary schools in Lugari.',
+    photoUrl: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&q=80&w=800',
+    verified: true,
+    address: '1km off Lumakanda Sub-County HQ Road',
+  },
+  {
+    id: 'sch-2',
+    name: 'Mautuma Secondary School',
+    slug: 'mautuma-secondary-school',
+    wardSlug: 'mautuma',
+    level: 'Secondary',
+    type: 'Public',
+    gender: 'Co-ed',
+    principalName: 'Mrs. E. Wanjala',
+    contactPhone: '+254 721 987 654',
+    facilities: ['Under-construction Science Lab', 'Multi-purpose Hall', 'Volleyball Court', 'Library'],
+    studentCount: 620,
+    teacherCount: 28,
+    academicPerformanceNote: 'Consistent improvement in STEM subjects over the past 3 years.',
+    photoUrl: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=800',
+    verified: true,
+    address: 'Mautuma Market Rd, Mautuma Ward',
+  },
+  {
+    id: 'sch-3',
+    name: 'Lugari Diploma Teachers Training College',
+    slug: 'lugari-ttc',
+    wardSlug: 'lugari',
+    level: 'TVET',
+    type: 'Public',
+    gender: 'Co-ed',
+    principalName: 'Dr. A. Khamisi',
+    contactPhone: '+254 733 456 789',
+    facilities: ['Modern ICT Hub', 'Demonstration Classrooms', 'Hostels', 'Agro-Demonstration Farm'],
+    studentCount: 1250,
+    teacherCount: 65,
+    academicPerformanceNote: 'Leading trainer for Competency-Based Curriculum (CBC) diploma educators in Western Kenya.',
+    photoUrl: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=800',
+    verified: true,
+    address: 'Lugari Station Centre',
+  }
+];
+
+export const MOCK_BUSINESSES: Business[] = [
+  {
+    id: 'biz-1',
+    name: 'Mafuta Agrovet & Farmers Hub',
+    slug: 'mafuta-agrovet-farmers-hub',
+    category: 'agrovets',
+    wardSlug: 'mautuma',
+    shortDescription: 'Certified farm seeds, fertilizers, veterinary drugs, and free extension consultations.',
+    fullDescription: 'Mafuta Agrovet provides high quality certified hybrid maize seeds (KEPHIS approved), top-dressing fertilizers, animal feeds, artificial insemination kits, and on-site veterinary doctor services for livestock farmers across Mautuma.',
+    address: 'Plot 14, Main Street, Mautuma Centre',
+    phone: '+254 711 334 455',
+    whatsapp: '+254 711 334 455',
+    openingHours: 'Mon - Sat: 7:00 AM - 7:00 PM',
+    verified: true,
+    isClaimed: true,
+    logoUrl: 'https://images.unsplash.com/photo-1595246140625-573b715d11dc?auto=format&fit=crop&q=80&w=200',
+    photoUrls: ['https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&q=80&w=800'],
+    services: ['Certified Seeds', 'Soil Testing Kits', 'AI Veterinary Service', 'Livestock Dewormers', 'Drip Equipment'],
+    rating: 4.8,
+    isSponsored: true,
+  },
+  {
+    id: 'biz-2',
+    name: 'Lumakanda Hardware & Building Supplies',
+    slug: 'lumakanda-hardware-building-supplies',
+    category: 'hardware',
+    wardSlug: 'lumakanda',
+    shortDescription: 'Cement, corrugated roofing sheets, steel bars, timber, and plumbing fittings.',
+    fullDescription: 'Direct distributor of Simba Cement, Mabati Rolling Mills, and standard construction steel. Transport delivery available across Lugari Sub-County.',
+    address: 'Opposite Sub-County Police Station, Lumakanda',
+    phone: '+254 722 556 677',
+    whatsapp: '+254 722 556 677',
+    openingHours: 'Mon - Sat: 8:00 AM - 6:00 PM',
+    verified: true,
+    isClaimed: true,
+    photoUrls: ['https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=800'],
+    services: ['Building Supplies', 'Site Delivery', 'Custom Timber Sizing', 'Water Tanks'],
+    rating: 4.6,
+  },
+  {
+    id: 'biz-3',
+    name: 'Lugari Solar & Electronics Repairs',
+    slug: 'lugari-solar-electronics',
+    category: 'electronics',
+    wardSlug: 'lugari',
+    shortDescription: 'Solar power system installation, inverter repairs, smartphone and laptop maintenance.',
+    fullDescription: 'Specialists in off-grid solar installation for rural homes and institutions, battery testing, TV mounting, and smartphone repairs.',
+    address: 'Lugari Station Plaza, Shop 3',
+    phone: '+254 700 889 900',
+    openingHours: 'Mon - Sat: 8:30 AM - 6:30 PM',
+    verified: false,
+    isClaimed: false,
+    services: ['Solar Panel Sizing', 'Inverter Repair', 'Phone Screen Replacement', 'Batteries'],
+  }
+];
+
+export const MOCK_MARKETPLACE: MarketplaceListing[] = [
+  {
+    id: 'mkt-1',
+    title: 'High-Yield Friesian Dairy Heifer (In-Calf 6 Months)',
+    slug: 'friesian-dairy-heifer-mautuma',
+    category: 'livestock',
+    priceKsh: 85000,
+    wardSlug: 'mautuma',
+    sellerName: 'Farmer Peter Kiprop',
+    sellerPhone: '+254 712 990 011',
+    sellerVerified: true,
+    postedDate: '2025-02-15',
+    description: 'Healthy 2nd calf Friesian heifer. Mother produces 24 litres/day. Fully vaccinated with rabies and foot-and-mouth records available.',
+    images: ['https://images.unsplash.com/photo-1546445317-29f4545f9d52?auto=format&fit=crop&q=80&w=800'],
+    condition: 'Like New',
+  },
+  {
+    id: 'mkt-2',
+    title: '50kg Bags Clean Dry White Maize (H614 Hybrid)',
+    slug: '50kg-bags-dry-white-maize-lumakanda',
+    category: 'farm_produce',
+    priceKsh: 3200,
+    wardSlug: 'lumakanda',
+    sellerName: 'Lugari Farmers Co-op Store',
+    sellerPhone: '+254 720 112 233',
+    sellerVerified: true,
+    postedDate: '2025-02-17',
+    description: 'Properly dried maize harvested last season. Moisture content below 13.5%. Cleaned and bagged.',
+    images: ['https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&q=80&w=800'],
+  }
+];
+
+export const MOCK_EVENTS: Event[] = [
+  {
+    id: 'evt-1',
+    title: 'Lugari NG-CDF Annual Public Participation Forum 2025',
+    slug: 'lugari-ng-cdf-public-participation-2025',
+    category: 'public_participation',
+    wardSlug: 'lumakanda',
+    venue: 'Lumakanda Social Hall & Grounds',
+    startDate: '2025-03-12',
+    startTime: '09:00 AM',
+    organizerName: 'Office of the Member of Parliament & NG-CDF',
+    organizerVerified: true,
+    description: 'Constituency-wide forum to review ongoing FY 2024/25 infrastructure projects, present audit findings, and gather priority project submissions for the upcoming budget cycle.',
+    rsvpCount: 240,
+    isPast: false,
+  },
+  {
+    id: 'evt-2',
+    title: 'Mautuma Farmers Field Day & Modern Agriculture Expo',
+    slug: 'mautuma-farmers-field-day-2025',
+    category: 'training',
+    wardSlug: 'mautuma',
+    venue: 'Mautuma Farmers Training Centre Grounds',
+    startDate: '2025-03-18',
+    startTime: '08:30 AM',
+    organizerName: 'Sub-County Agriculture Extension Office',
+    organizerVerified: true,
+    description: 'Demonstrations on drought-resilient seed varieties, soil acidity treatment with lime, efficient drip irrigation, and dairy fodder silage management.',
+    rsvpCount: 185,
+    isPast: false,
+  }
+];
+
+export const MOCK_ARTICLES: Article[] = [
+  {
+    id: 'art-1',
+    title: 'Lugari Launches Digital Citizen Issue Tracking System to Speed Up Rural Road & Water Repairs',
+    slug: 'lugari-launches-digital-issue-tracking',
+    category: 'development',
+    summary: 'Residents can now report broken water points, damaged culverts, and power outages with instant case tracking references.',
+    content: 'Lugari Sub-County has deployed a hyperlocal digital infrastructure platform designed to bridge communication between residents, ward representatives, and project managers. The platform provides transparent tracking for public works...',
+    authorName: 'Editorial Desk',
+    authorRole: 'Lugari Community Media Unit',
+    publishedDate: '2025-02-18',
+    source: 'Lugari Platform Editorial Team',
+    verificationStatus: 'verified',
+    imageUrl: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=800',
+  },
+  {
+    id: 'art-2',
+    title: 'Mautuma Secondary Lab Reaches 75% Completion Ahead of CBC Senior School Rollout',
+    slug: 'mautuma-lab-reaches-75-completion',
+    category: 'education',
+    summary: 'The KSh 4.5M facility is on track for May commissioning to accommodate incoming Senior School science students.',
+    content: 'Construction works at Mautuma Secondary School science complex have advanced to internal fittings. Site inspectors confirmed roof completion and plumbing works currently underway...',
+    authorName: 'Works Inspectorate',
+    authorRole: 'Sub-County Project Monitor',
+    publishedDate: '2025-02-14',
+    source: 'NG-CDF Inspectorate',
+    verificationStatus: 'verified',
+    imageUrl: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=800',
+  }
+];
+
+export const MOCK_CASES: CaseReport[] = [
+  {
+    id: 'case-1',
+    referenceCode: 'LUG-84721',
+    category: 'electricity',
+    wardSlug: 'mautuma',
+    villageLocation: 'Mautuma Junction near Primary School',
+    description: 'Transformer oil leak and power outage affecting 45 households for 3 days.',
+    submittedAt: '2025-02-16 10:30 EAT',
+    status: 'Action in Progress',
+    isAnonymous: false,
+    reporterPhone: '+254 712 *** *89',
+    reporterName: 'Resident - Mautuma',
+    imageUrls: ['https://images.unsplash.com/photo-1544725121-be3bf52e2dc8?auto=format&fit=crop&q=80&w=800'],
+    aiClassification: {
+      category: 'electricity',
+      confidence: 0.92,
+      suggestedPriority: 'High',
+      duplicateCluster: 'Transformer Failure - Mautuma Sector 2',
+    },
+    assignedTo: 'Kenya Power Sub-County Technical Team',
+    updates: [
+      { id: 'cu-1', timestamp: '2025-02-16 10:30', status: 'Received', note: 'Report logged via web portal.', updatedBy: 'System Auto' },
+      { id: 'cu-2', timestamp: '2025-02-16 11:15', status: 'Under Review', note: 'AI classified as high priority power outage. Dispatched to utilities officer.', updatedBy: 'Portal Triage' },
+      { id: 'cu-3', timestamp: '2025-02-16 14:00', status: 'Referred', note: 'Escalated to KPLC Kakamega dispatch center with ref #KP-9021.', updatedBy: 'Sub-County Liaison' },
+      { id: 'cu-4', timestamp: '2025-02-17 09:00', status: 'Action in Progress', note: 'Technical team dispatched with replacement transformer unit.', updatedBy: 'KPLC Dispatch' },
+    ]
+  },
+  {
+    id: 'case-2',
+    referenceCode: 'LUG-84722',
+    category: 'roads',
+    wardSlug: 'lumakanda',
+    villageLocation: 'Lumakanda Bridge Road',
+    description: 'Deep pothole washouts causing vehicle damage after heavy rain.',
+    submittedAt: '2025-02-17 14:10 EAT',
+    status: 'Verified',
+    isAnonymous: true,
+    updates: [
+      { id: 'cu-1', timestamp: '2025-02-17 14:10', status: 'Received', note: 'Report submitted anonymously.', updatedBy: 'System Auto' },
+      { id: 'cu-2', timestamp: '2025-02-17 16:30', status: 'Verified', note: 'Verified by Ward Field Officer.', updatedBy: 'Ward Officer Lumakanda' }
+    ]
+  }
+];
+
+export const MOCK_PROPOSALS: PublicProposal[] = [
+  {
+    id: 'prop-1',
+    title: 'Installation of Solar Streetlights at Mautuma Produce Market',
+    slug: 'solar-streetlights-mautuma-market',
+    wardSlug: 'mautuma',
+    category: 'Trade & Security',
+    proposerName: 'Mautuma Market Traders Association',
+    summary: 'Request for 15 solar-powered high-mast streetlights to enhance security and allow traders to operate till 9 PM safely.',
+    supporterCount: 428,
+    commentsCount: 34,
+    status: 'Accepted for FY Planning',
+    createdDate: '2025-01-10',
+  },
+  {
+    id: 'prop-2',
+    title: 'Establishment of Youth Digital Hub & Free Wi-Fi at Lumakanda Library',
+    slug: 'youth-digital-hub-lumakanda',
+    wardSlug: 'lumakanda',
+    category: 'Youth & ICT',
+    proposerName: 'Lugari Innovators Network',
+    summary: 'Provision of 20 desktop computers, high-speed fiber internet, and digital skills trainers for job seeking youth.',
+    supporterCount: 612,
+    commentsCount: 52,
+    status: 'Under Review by NG-CDF',
+    createdDate: '2025-01-20',
+  }
+];
+
+export const MOCK_COMMITMENTS: Commitment[] = [
+  {
+    id: 'com-1',
+    title: 'Paving 10km of Primary Access Roads across all Wards',
+    institution: 'County Ministry of Infrastructure',
+    wardSlug: 'lugari',
+    targetDate: '2025-06-30',
+    status: 'In Progress',
+    evidence: 'Contractor mobilized in 3 wards. Gravelling 45% complete.',
+    lastUpdated: '2025-02-10',
+  },
+  {
+    id: 'com-2',
+    title: '100% Disbursement of Secondary School Bursaries before Term 2',
+    institution: 'Lugari NG-CDF Committee',
+    wardSlug: 'mautuma',
+    targetDate: '2025-04-30',
+    status: 'In Progress',
+    evidence: 'Public applications open. Verification committees formed in all 6 wards.',
+    lastUpdated: '2025-02-15',
+  }
+];
+
+export const MOCK_ALERTS: Alert[] = [
+  {
+    id: 'alt-1',
+    title: 'Scheduled Maintenance Power Outage - Mautuma & Environs',
+    category: 'power_outage',
+    severity: 'warning',
+    wardSlug: 'mautuma',
+    message: 'Kenya Power announces scheduled maintenance on Thursday, 27 February 2025 from 8:00 AM to 5:00 PM affecting Mautuma Centre, Kivaywa, and surrounding schools.',
+    issuedAt: '2025-02-18 08:00 EAT',
+    isActive: true,
+  }
+];
+
+export const MOCK_TALENT: TalentProfile[] = [
+  {
+    id: 'tal-1',
+    name: 'Samuel Wafula',
+    slug: 'samuel-wafula-certified-electrician',
+    profession: 'EPRA Certified Domestic & Industrial Electrician',
+    category: 'electrician',
+    wardSlug: 'lumakanda',
+    phone: '+254 713 554 433',
+    whatsapp: '+254 713 554 433',
+    bio: 'Over 8 years experience in building electrical wiring, solar inverter installation, generator maintenance, and fault diagnosis.',
+    skills: ['Conduit Wiring', 'Solar System Sizing', 'Circuit Breakers', 'EPRA Class T2 License'],
+    verified: true,
+    availability: 'Available',
+  },
+  {
+    id: 'tal-2',
+    name: 'Grace Musimbi',
+    slug: 'grace-musimbi-fullstack-developer',
+    profession: 'Frontend & Mobile Developer',
+    category: 'developer',
+    wardSlug: 'mautuma',
+    phone: '+254 790 123 456',
+    bio: 'Specialized in Next.js, React Native, and USSD integration for rural fintech and agricultural apps.',
+    skills: ['TypeScript', 'Next.js', 'Tailwind CSS', 'USSD Gateways', 'Node.js'],
+    verified: true,
+    availability: 'Available',
+  }
+];
+
+export const MOCK_AGRI_PRICES: AgriculturePrice[] = [
+  { id: 'p1', item: 'Dry White Maize', unit: '90kg Bag', marketName: 'Mautuma Grain Market', wardSlug: 'mautuma', priceKsh: 3200, previousPriceKsh: 3400, updatedDate: '2025-02-18', isStale: false, source: 'Sub-County Agri Market Monitor' },
+  { id: 'p2', item: 'Rosecoco Beans', unit: '90kg Bag', marketName: 'Lumakanda Open Market', wardSlug: 'lumakanda', priceKsh: 8500, previousPriceKsh: 8200, updatedDate: '2025-02-18', isStale: false, source: 'Sub-County Agri Market Monitor' },
+  { id: 'p3', item: 'Raw Fresh Milk', unit: '1 Litre', marketName: 'Lugari Dairy Co-op', wardSlug: 'lugari', priceKsh: 55, previousPriceKsh: 50, updatedDate: '2025-02-17', isStale: false, source: 'Dairy Co-op Board' },
+  { id: 'p4', item: 'Mature Local Bull', unit: 'Per Head', marketName: 'Lwandeti Livestock Market', wardSlug: 'lwandeti', priceKsh: 45000, previousPriceKsh: 42000, updatedDate: '2025-02-15', isStale: false, source: 'Livestock Traders Assoc' },
+];
+
+export const MOCK_ORGANIZATIONS: Organization[] = [
+  {
+    id: 'org-ngcdf',
+    name: 'Office of the Member of Parliament & NG-CDF Lugari',
+    slug: 'ng-cdf-lugari',
+    type: 'government',
+    wardSlug: 'lumakanda',
+    description: 'Official National Government Constituencies Development Fund office for Lugari Constituency.',
+    phone: '+254 700 111 222',
+    email: 'ngcdf@lugari.ke',
+    verified: true,
+    logoUrl: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&q=80&w=200',
+    address: 'NG-CDF Complex, Lumakanda Sub-County HQ',
+  },
+  {
+    id: 'org-mautuma-coop',
+    name: 'Mautuma Farmers Farmers Co-operative Society',
+    slug: 'mautuma-farmers-cooperative',
+    type: 'cbo',
+    wardSlug: 'mautuma',
+    description: 'Serving over 2,400 smallholder grain and dairy farmers in eastern Lugari with bulk purchasing and milk cooling facilities.',
+    phone: '+254 722 888 999',
+    verified: true,
+    address: 'Mautuma Farmers Depot',
+  }
+];
+
+export const MOCK_ADS: Advertisement[] = [
+  {
+    id: 'ad-1',
+    title: 'Mautuma Hybrid Seeds - High Yield Harvest Guaranteed',
+    advertiserName: 'Mafuta Agrovet',
+    placement: 'homepage_banner',
+    imageUrl: 'https://images.unsplash.com/photo-1595246140625-573b715d11dc?auto=format&fit=crop&q=80&w=1200',
+    targetUrl: '/businesses/mafuta-agrovet-farmers-hub',
+    targetWardSlug: 'mautuma',
+    categoryInterest: 'agriculture',
+    isApproved: true,
+    impressionsCount: 14200,
+    clicksCount: 840,
+  }
+];
+
+export const MOCK_AUDIT_LOGS: AuditEvent[] = [
+  { id: 'aud-1', timestamp: '2025-02-18 09:15:20', user: 'Admin (System Operator)', action: 'APPROVE_ORGANIZATION', resource: 'Organization: Mautuma Co-op', summary: 'Verified institutional credentials.', ipAddress: '197.232.12.4' },
+  { id: 'aud-2', timestamp: '2025-02-18 08:30:11', user: 'Case Worker (Lumakanda)', action: 'UPDATE_CASE_STATUS', resource: 'Case: LUG-84721', summary: 'Changed status to Action in Progress.', ipAddress: '197.232.14.88' },
+  { id: 'aud-3', timestamp: '2025-02-17 16:22:04', user: 'Publisher (NG-CDF)', action: 'PUBLISH_PROJECT_UPDATE', resource: 'Project: LUG-CDF-2025-01', summary: 'Uploaded roofing milestone completion report.', ipAddress: '102.222.180.2' },
+];
