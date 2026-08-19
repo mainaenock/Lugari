@@ -1,0 +1,16 @@
+{
+  "name": "Lugari Digital Infrastructure",
+  "short_name": "Lugari.ke",
+  "description": "Hyperlocal digital infrastructure platform for Lugari Sub-County",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f392b",
+  "theme_color": "#0f392b",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

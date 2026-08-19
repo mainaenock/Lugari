@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /portal/
+Disallow: /account/
+
+Sitemap: https://lugari.ke/sitemap.xml
